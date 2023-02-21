@@ -1,6 +1,6 @@
 # Node Rules Engine, Feature Flags, and Dynamic Configuration for Node.JS applications and AWS Lambda
 
-This is a repo that demonstrates the Lambda Genie features
+This is a repo that demonstrates the Lambda Genie features. It contains a UI project (simple CRA based app with AWS Amplify Components integrated with AWS Cognito and AWS API Gateway) and an API project (cdk project AWS API Gateway with AWS Lambda REST Api Integration and Cognito Authorizer). The lambda function uses the app genie features to dynamically build a response for the UI to render a personalized dashboard.
 
 ## What is Lambda Genie?
 
@@ -48,8 +48,4 @@ The Environment Management module allows you to define environments and manage t
 for each environment. You can define environments for your application, such as development, staging,
 and production, and manage the configuration values for each environment. This allows you to have custom 
 configuration values, feature flags, and business rules for each environment.
-
-## Next Steps
-
-To see the Genie spin its magic :-) please proceed  to the Tutorial section [here](/docs/intro.md)
 
