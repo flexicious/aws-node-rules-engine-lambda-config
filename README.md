@@ -1,4 +1,4 @@
-# node-rules-engine-lambda-config
+# Node Rules Engine, Feature Flags, and Dynamic Configuration for Node.JS applications and AWS Lambda
 
 This is a repo that demonstrates the Lambda Genie features
 
