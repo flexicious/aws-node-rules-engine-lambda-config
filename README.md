@@ -13,6 +13,7 @@ Please make sure you have the following installed on your machine:
 and published your config to a bucket you specify in the cdk project (api/lambda/utils/config-utils.ts) 
 - If you do not have an account with Lambda Genie, you can use the sample config.json file in the cdk project (api/config.json) to test the app.
 Just make sure you update the bucket name in the cdk project (api/lambda/utils/config-utils.ts) to point to the bucket where you uploaded the config.json file.
+- This project also demonstrates runtime configuration of AWS Lambda from values stored in AWS Secrets Manager, AWS Systems Manager Parameter Store, AWS S3, and AWS DynamoDB.
 
 
 
@@ -42,13 +43,19 @@ npm install
 cd api
 npm run watch
 ```
-2. Configure awsExports.js in the UI project
+2. Gather output values from the API project
+Once the API project is deployed, you will need to gather the following from the output:
+- DemoStack.ProductsApiUrl
+- DemoStack.UserPoolId
+- DemoStack.UserPoolClientId
+
+3. Configure awsExports.js in the UI project
 Once the API project is deployed, you will need to configure the UI project to use the API.
 In the UI project, open the file `src/aws-exports.js` and update the following values:
-- `userPoolId` - This is the Cognito User Pool ID
-- `userPoolWebClientId` - This is the Cognito User Pool Client ID
+- `userPoolId` - Replace the value with the Cognito User Pool ID from the API project output from step 2
+- `userPoolWebClientId` - Replace the value with the Cognito User Pool Client ID from the API project output from step 2
 
-3. Create a proxy configuration file
+4. Create a proxy configuration file
 In the UI project, create a file called `src/setupProxy.js` and add the following content:
 ```js
     const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -67,10 +74,7 @@ In the UI project, create a file called `src/setupProxy.js` and add the followin
     );
     };
 ```
-Replace the following values in the file:
-- `<API Gateway ID>` - This is the API Gateway ID
-- `<AWS Region>` - This is the AWS Region
-- `<Stage Name>` - This is the API Gateway Stage Name
+Replace the target value with the API Gateway URL from the API project output from step 2
 
 4. Deploy the UI project
 ```

@@ -11,7 +11,6 @@ import { Construct } from "constructs";
 export class CdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-    // Create a Cognito User Pool
     const userPool = new cognito.UserPool(this, 'MyUserPool', {
       userPoolName: 'my-user-pool',
       selfSignUpEnabled: true,
@@ -21,7 +20,6 @@ export class CdkStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY
     });
 
-    // Create a Cognito User Pool Client
     const userPoolClient = new cognito.UserPoolClient(this, 'MyUserPoolClient', {
       userPool,
       userPoolClientName: 'my-user-pool-client'
@@ -35,26 +33,43 @@ export class CdkStack extends cdk.Stack {
       logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
     });
 
-
-    const configTable = dynamodb.Table.fromTableName(this, "ConfigTable", "CONFIG_TABLE");
+    const configTable = new dynamodb.Table(this, "ConfigTable", {
+      partitionKey: {
+        name: "lambdaName",
+        type: dynamodb.AttributeType.STRING,
+      },
+      sortKey: {
+        name: "configKey",
+        type: dynamodb.AttributeType.STRING,
+      },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
     configTable.grantReadData(configHandler);
-    const secret = secretsmanager.Secret.fromSecretNameV2(this, "TestSecret", "prod/test_secret");
+
+
+    const secret = new secretsmanager.Secret(this, "TestSecret", {
+      secretName: "prod/test_secret1",
+    });
     secret.grantRead(configHandler);
-    const param = ssm.StringParameter.fromStringParameterName(this, "TestParam", "/prod/test_param");
+
+
+    const param = new ssm.StringParameter(this, "TestParam", {
+      parameterName: "/prod/test_param1",
+      stringValue: "test",
+    });
     param.grantRead(configHandler);
+
     const bucket = s3.Bucket.fromBucketName(this, "TestBucket", "lambda-accelerator-rules");
     bucket.grantRead(configHandler);
-
-
     const getProductsHandler = new NodejsFunction(this, "GetProductsHandler", {
       entry: "lambda/getProducts.ts",
       handler: "handler",
-      logRetention: cdk.aws_logs.RetentionDays.ONE_WEEK,
+      logRetention: cdk.aws_logs.RetentionDays.ONE_DAY,
     });
 
     bucket.grantRead(getProductsHandler);
 
-    // Create an Authorizer for the API Gateway REST API
     const authorizer = new apigateway.CognitoUserPoolsAuthorizer(this, 'MyAuthorizer', {
       cognitoUserPools: [userPool]
     });
@@ -78,5 +93,18 @@ export class CdkStack extends cdk.Stack {
     const products = productsApi.root.addResource("products");
     const getProductsIntegration = new apigateway.LambdaIntegration(getProductsHandler);
     products.addMethod("GET", getProductsIntegration);
+
+    new cdk.CfnOutput(this, "ProductsApiUrl", {
+      value: productsApi.url,
+    });
+
+    new cdk.CfnOutput(this, "UserPoolId", {
+      value: userPool.userPoolId,
+    });
+
+    new cdk.CfnOutput(this, "UserPoolClientId", {
+      value: userPoolClient.userPoolClientId,
+    });
+    
   }
 }

@@ -294,7 +294,7 @@
       "type": "DynamoTable"
     },
     {
-      "value": "{\n \"Name\": \"/prod/test_param\"\n}\n",
+      "value": "{\n \"Name\": \"/prod/test_param1\"\n}\n",
       "name": "GLOBAL_PARAM_STORE_VAL",
       "type": "ParameterStore"
     },
@@ -304,7 +304,7 @@
       "type": "S3File"
     },
     {
-      "value": "\n{\n\n \"SecretId\": \"prod/test_secret\"\n}",
+      "value": "\n{\n\n \"SecretId\": \"prod/test_secret1\"\n}",
       "cacheDurationSeconds": 300,
       "name": "GLOBAL_SECRET_VAL",
       "type": "SecretManager"
