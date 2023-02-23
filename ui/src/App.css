@@ -1,0 +1,30 @@
+
+.pricing {
+  padding-top: 2rem;
+  width: 100%;
+}
+.noBullet {
+  list-style: none;
+  padding: 0;
+}
+.card {
+
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  width: 200px;
+  flex:1;
+  text-align: center;
+}
+.big{
+  flex:2
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  gap:20px;
+}
+.container {
+  padding :2rem;
+}
