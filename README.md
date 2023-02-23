@@ -2,6 +2,74 @@
 
 This is a repo that demonstrates the Lambda Genie features. It contains a UI project (simple CRA based app with AWS Amplify Components integrated with AWS Cognito and AWS API Gateway) and an API project (cdk project AWS API Gateway with AWS Lambda REST Api Integration and Cognito Authorizer). The lambda function uses the app genie features to dynamically build a response for the UI to render a personalized dashboard.
 
+## Getting Started
+
+### Prerequisites
+Please make sure you have the following installed on your machine:
+- Node.js
+- AWS CLI
+- AWS CDK
+- AWS SAM CLI
+
+### Installation
+1. Clone the repo
+2. Install the dependencies for the UI project
+```
+cd ui
+npm install
+```
+3. Install the dependencies for the API project
+```
+cd api
+npm install
+```
+
+### Deployment
+1. Deploy the API project
+```
+cd api
+npm run watch
+```
+2. Configure awsExports.js in the UI project
+Once the API project is deployed, you will need to configure the UI project to use the API.
+In the UI project, open the file `src/aws-exports.js` and update the following values:
+- `userPoolId` - This is the Cognito User Pool ID
+- `userPoolWebClientId` - This is the Cognito User Pool Client ID
+
+3. Create a proxy configuration file
+In the UI project, create a file called `src/setupProxy.js` and add the following content:
+```js
+    const { createProxyMiddleware } = require('http-proxy-middleware');
+
+    module.exports = function(app) {
+    app.use(
+        '/api',
+        createProxyMiddleware({
+        target: 'https://<API Gateway ID>.execute-api.<AWS Region>.amazonaws.com/<Stage Name>',
+        changeOrigin: true,
+        secure: false,
+            pathRewrite: {
+                '^/api': ''
+            }
+        })
+    );
+    };
+```
+Replace the following values in the file:
+- `<API Gateway ID>` - This is the API Gateway ID
+- `<AWS Region>` - This is the AWS Region
+- `<Stage Name>` - This is the API Gateway Stage Name
+
+4. Deploy the UI project
+```
+cd ui
+npm start
+```
+
+
+
+
+
 ## What is Lambda Genie?
 
 Lambda Genie is a tool provides a simple, yet powerful platform to define business rules, intelligent 
