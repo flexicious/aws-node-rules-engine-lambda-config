@@ -9,7 +9,15 @@ Please make sure you have the following installed on your machine:
 - Node.js
 - AWS CLI
 - AWS CDK
-- AWS SAM CLI
+- An account with Lambda Genie (https://lambdagenie.com) where you have configured your rules, feature flags, and dynamic configuration
+and published your config to a bucket you specify in the cdk project (api/lambda/utils/config-utils.ts) 
+
+```ts
+const bucketParams = {
+    Bucket: "lambda-genie-rules",
+    Key: "config.json",
+};
+```
 
 ### Installation
 1. Clone the repo
