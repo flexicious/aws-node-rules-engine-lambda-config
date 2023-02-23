@@ -11,6 +11,10 @@ Please make sure you have the following installed on your machine:
 - AWS CDK
 - An account with Lambda Genie (https://lambdagenie.com) where you have configured your rules, feature flags, and dynamic configuration
 and published your config to a bucket you specify in the cdk project (api/lambda/utils/config-utils.ts) 
+- If you do not have an account with Lambda Genie, you can use the sample config.json file in the cdk project (api/config.json) to test the app.
+Just make sure you update the bucket name in the cdk project (api/lambda/utils/config-utils.ts) to point to the bucket where you uploaded the config.json file.
+
+
 
 ```ts
 const bucketParams = {

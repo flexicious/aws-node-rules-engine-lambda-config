@@ -1,0 +1,453 @@
+{
+  "ruleSets": [
+    {
+      "entityName": "UserProfile",
+      "rules": [
+        {
+          "matcher": {
+            "logicalOperator": "AND",
+            "children": [
+              {
+                "col": {
+                  "format": "number",
+                  "dataField": "age",
+                  "headerText": "age",
+                  "filterOptions": {
+                    "filterOperation": "Between",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "age"
+                },
+                "parent": null,
+                "id": "1.1",
+                "expression": "20",
+                "operation": "LessThan"
+              },
+              {
+                "col": {
+                  "format": "string",
+                  "dataField": "gender",
+                  "headerText": "gender",
+                  "filterOptions": {
+                    "filterComboBoxBuildFromGrid": true,
+                    "filterComboBoxDataProvider": [
+                      {
+                        "name": "Male",
+                        "value": "Male"
+                      },
+                      {
+                        "name": "Female",
+                        "value": "Female"
+                      }
+                    ],
+                    "filterOperation": "InList",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "gender"
+                },
+                "parent": null,
+                "id": "1.2",
+                "expression": [
+                  "Male"
+                ],
+                "operation": "InList"
+              }
+            ],
+            "id": "1"
+          },
+          "result": {
+            "type": "string",
+            "value": "Boys"
+          },
+          "filterString": "If (age Less Than 20\nAND gender In List Male) then return Boys"
+        },
+        {
+          "matcher": {
+            "logicalOperator": "AND",
+            "children": [
+              {
+                "col": {
+                  "format": "number",
+                  "dataField": "age",
+                  "headerText": "age",
+                  "filterOptions": {
+                    "filterOperation": "Between",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "age"
+                },
+                "parent": null,
+                "id": "1.1",
+                "expression": "20",
+                "operation": "LessThan"
+              },
+              {
+                "col": {
+                  "format": "string",
+                  "dataField": "gender",
+                  "headerText": "gender",
+                  "filterOptions": {
+                    "filterComboBoxBuildFromGrid": true,
+                    "filterComboBoxDataProvider": [
+                      {
+                        "name": "Male",
+                        "value": "Male"
+                      },
+                      {
+                        "name": "Female",
+                        "value": "Female"
+                      }
+                    ],
+                    "filterOperation": "InList",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "gender"
+                },
+                "parent": null,
+                "id": "1.2",
+                "expression": [
+                  "Female"
+                ],
+                "operation": "InList"
+              }
+            ],
+            "id": "1"
+          },
+          "result": {
+            "type": "string",
+            "value": "Girls"
+          },
+          "filterString": "If (age Less Than 20\nAND gender In List Female) then return Girls"
+        },
+        {
+          "matcher": {
+            "logicalOperator": "AND",
+            "children": [
+              {
+                "col": {
+                  "format": "string",
+                  "dataField": "gender",
+                  "headerText": "gender",
+                  "filterOptions": {
+                    "filterComboBoxBuildFromGrid": true,
+                    "filterComboBoxDataProvider": [
+                      {
+                        "name": "Male",
+                        "value": "Male"
+                      },
+                      {
+                        "name": "Female",
+                        "value": "Female"
+                      }
+                    ],
+                    "filterOperation": "InList",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "gender"
+                },
+                "parent": null,
+                "id": "1.1",
+                "expression": [
+                  "Female"
+                ],
+                "operation": "InList"
+              }
+            ],
+            "id": "1"
+          },
+          "result": {
+            "type": "string",
+            "value": "Women"
+          },
+          "filterString": "If (gender In List Female) then return Women"
+        },
+        {
+          "matcher": {
+            "logicalOperator": "AND",
+            "children": [
+              {
+                "col": {
+                  "format": "string",
+                  "dataField": "gender",
+                  "headerText": "gender",
+                  "filterOptions": {
+                    "filterComboBoxBuildFromGrid": true,
+                    "filterComboBoxDataProvider": [
+                      {
+                        "name": "Male",
+                        "value": "Male"
+                      },
+                      {
+                        "name": "Female",
+                        "value": "Female"
+                      }
+                    ],
+                    "filterOperation": "InList",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "gender"
+                },
+                "parent": null,
+                "id": "1.1",
+                "expression": [
+                  "Male"
+                ],
+                "operation": "InList"
+              }
+            ],
+            "id": "1"
+          },
+          "result": {
+            "type": "string",
+            "value": "Men"
+          },
+          "filterString": "If (gender In List Male) then return Men"
+        }
+      ],
+      "name": "HOME_PAGE_PERSONALIZATION"
+    },
+    {
+      "entityName": "UserProfile",
+      "rules": [
+        {
+          "matcher": {
+            "logicalOperator": "AND",
+            "children": [
+              {
+                "col": {
+                  "format": "string",
+                  "dataField": "name",
+                  "headerText": "name",
+                  "filterOptions": {
+                    "filterOperation": "Wildcard",
+                    "filterWaterMark": "*Search*",
+                    "filterExcludeObjectsWithoutMatchField": true
+                  },
+                  "uniqueIdentifier": "name"
+                },
+                "parent": null,
+                "id": "1.1",
+                "expression": "*",
+                "operation": "Wildcard"
+              }
+            ],
+            "id": "1"
+          },
+          "result": {
+            "type": "boolean",
+            "value": true
+          },
+          "filterString": "If (name Wildcard *) then return true"
+        }
+      ],
+      "name": "NEXT_GEN_FEATURE",
+      "versions": {
+        "prd": [
+          {
+            "matcher": {
+              "logicalOperator": "AND",
+              "children": [
+                {
+                  "col": {
+                    "format": "string",
+                    "dataField": "email",
+                    "headerText": "email",
+                    "filterOptions": {
+                      "filterOperation": "Wildcard",
+                      "filterWaterMark": "*Search*",
+                      "filterExcludeObjectsWithoutMatchField": true
+                    },
+                    "uniqueIdentifier": "email"
+                  },
+                  "parent": null,
+                  "id": "1.1",
+                  "expression": "BETA_FEATURE_USERS",
+                  "operation": "InPredefinedList"
+                }
+              ],
+              "id": "1"
+            },
+            "result": {
+              "type": "boolean",
+              "value": true
+            },
+            "filterString": "If (email In Predefined List BETA_FEATURE_USERS) then return true"
+          }
+        ]
+      }
+    }
+  ],
+  "globalConfigs": [
+    {
+      "value": "{\n  \"TableName\": \"CONFIG_TABLE\",\n  \"KeyConditionExpression\": \"PK = :PK\",\n  \"ExpressionAttributeValues\": {\n    \":PK\": {\n      \"S\": \"CONFIG_2_PK\"\n    }\n  }\n}",
+      "Edit": "{\n  \"TableName\": \"CONFIG_TABLE_DEV\",\n  \"KeyConditionExpression\": \"PK = :PK\",\n  \"ExpressionAttributeValues\": {\n    \":PK\": {\n      \"S\": \"CONFIG_2_PK\"\n    }\n  }\n}",
+      "name": "GLOBAL_DDB_QUERY_VAL",
+      "versions": {
+        "dev": "{\n  \"TableName\": \"CONFIG_TABLE_DEV\",\n  \"KeyConditionExpression\": \"PK = :PK\",\n  \"ExpressionAttributeValues\": {\n    \":PK\": {\n      \"S\": \"CONFIG_2_PK\"\n    }\n  }\n}"
+      },
+      "type": "DynamoTableQuery"
+    },
+    {
+      "value": "{\n \"TableName\": \"CONFIG_TABLE\",\n \"Key\": {\n    \"PK\": {\"S\":\"CONFIG_1_PK\"},\n    \"SK\": {\"S\":\"CONFIG_1_SK\"}\n  }\n}\n",
+      "cacheDurationSeconds": 300,
+      "name": "GLOBAL_DDB_VAL",
+      "type": "DynamoTable"
+    },
+    {
+      "value": "{\n \"Name\": \"/prod/test_param\"\n}\n",
+      "name": "GLOBAL_PARAM_STORE_VAL",
+      "type": "ParameterStore"
+    },
+    {
+      "value": "{\n \"Bucket\": \"lambda-accelerator-rules\",\n  \"Key\" : \"s3file.txt\"\n}\n",
+      "name": "GLOBAL_S3_VAL",
+      "type": "S3File"
+    },
+    {
+      "value": "\n{\n\n \"SecretId\": \"prod/test_secret\"\n}",
+      "cacheDurationSeconds": 300,
+      "name": "GLOBAL_SECRET_VAL",
+      "type": "SecretManager"
+    },
+    {
+      "value": "{\n  \"value\": \"static\"\n}",
+      "name": "GLOBAL_STATIC_VAL",
+      "versions": {
+        "dev": "{\n  \"value\": \"dev\"\n}"
+      },
+      "type": "StaticValue"
+    },
+    {
+      "value": "[\n  {\n    \"checked\": true,\n    \"dimensions\": {\n      \"width\": 12,\n      \"height\": 12\n    },\n    \"id\": 12,\n    \"name\": \"12\",\n    \"price\": 12,\n    \"tags\": []\n  },\n  {\n    \"checked\": true,\n    \"dimensions\": {\n      \"width\": 0,\n      \"height\": 0\n    },\n    \"id\": 0,\n    \"name\": \"TESTA\",\n    \"price\": 0,\n    \"tags\": [\n      \"TEST_SCHEMA_VAL\",\n      \"DEFAULT_BOOL_COL_WIDTH\"\n    ]\n  }\n]",
+      "name": "TEST_SCHEMA_VAL",
+      "type": "TEST_SCHEMA"
+    }
+  ],
+  "lambdaConfigs": [
+    {
+      "name": "GET_PRODUCTS",
+      "configValues": [
+        {
+          "name": "SLOT_NAMES",
+          "type": "HOMEPAGE_SLOT_DETAILS",
+          "value": "{\n  \"slot1\": \"Hobbies\",\n  \"slot2\": \"Clothing, Shoes & Jewelry\",\n  \"slot3\": \"Learning & Education\",\n  \"slot4\": \"Home & Kitchen\",\n  \"maxProducts\": 6\n}"
+        },
+        {
+          "name": "FEATURED_PRODUCTS",
+          "type": "FEATURED_PRODUCTS",
+          "value": "[\n  {\n    \"Id\": \"6\",\n    \"Product_Name\": \"LEGO City Garage Center 60232 Building Kit, New 2019 (234 Pieces)\",\n    \"Selling_Price\": 49.95,\n    \"Image\": \"https://images-na.ssl-images-amazon.com/images/I/51TQ-Xy6OsL.jpg\",\n    \"Discount_Percent\": 15,\n    \"Product_Url\": \"https://www.amazon.com/LEGO-Garage-Center-Building-Pieces/dp/B07PZQ133B\"\n  },\n  {\n    \"Id\": \"1\",\n    \"Product_Name\": \"VTech Scoop & Play Digger\",\n    \"Selling_Price\": 23.39,\n    \"Image\": \"https://images-na.ssl-images-amazon.com/images/I/51J74xuLipL.jpg\",\n    \"Discount_Percent\": 15,\n    \"Product_Url\": \"https://www.amazon.com/VTech-80-518600-Scoop-Play-Digger/dp/B07PTBVXCX\"\n  },\n  {\n    \"Id\": \"3\",\n    \"Product_Name\": \"HHIP 4902-0045 Hastings Triplet Magnifier, 10 x Power, 21 mm Lens Diameter\",\n    \"Selling_Price\": 40.36,\n    \"Image\": \"https://images-na.ssl-images-amazon.com/images/I/41DtsdgvDRL.jpg\",\n    \"Discount_Percent\": 10,\n    \"Product_Url\": \"https://www.amazon.com/HHIP-4902-0045-Hastings-Magnifier-Diameter/dp/B01LW5FLSQ\"\n  },\n  {\n    \"Id\": \"4\",\n    \"Product_Name\": \"EuroGraphics Nasa Solar System 1000 Piece Puzzle\",\n    \"Selling_Price\": 19.09,\n    \"Image\": \"https://images-na.ssl-images-amazon.com/images/I/51Jq9C7inWL.jpg\",\n    \"Discount_Percent\": 5,\n    \"Product_Url\": \"https://www.amazon.com/EuroGraphics-Solar-System-Piece-Puzzle/dp/B001V9CMBO\"\n  },\n  {\n    \"Id\": \"5\",\n    \"Product_Name\": \"Fisher-Price Little People Noah's Ark, Frustration Free Packaging\",\n    \"Selling_Price\": 45.36,\n    \"Image\": \"https://images-na.ssl-images-amazon.com/images/I/51Lf27efZcL.jpg\",\n    \"Discount_Percent\": 10,\n    \"Product_Url\": \"https://www.amazon.com/Fisher-Price-Little-People-Noahs-Ark/dp/B00CQHYXOO\"\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "TEST_LAMBDA",
+      "configValues": [
+        {
+          "name": "TEST_STATIC_VAL",
+          "type": "StaticValue",
+          "value": "{\n  \"value\": \"Random Value\"\n}",
+          "versions": {
+            "dev": "{\n  \"value\": \"Dev Random Value\"\n}"
+          }
+        },
+        {
+          "name": "TEST_DDB_VAL",
+          "type": "DynamoTable",
+          "value": "{\n  \"TableName\": \"CONFIG_TABLE\",\n  \"Key\": {\n    \"PK\": {\"S\":\"CONFIG_2_PK\"},\n    \"SK\": {\"S\":\"CONFIG_2_SK\"}\n  }\n}\n",
+          "cacheDurationSeconds": 300
+        },
+        {
+          "name": "TEST_HTTP",
+          "type": "HttpGet",
+          "value": "{\n  \"url\": \"https://dummyjson.com/products/1\"\n}"
+        }
+      ]
+    }
+  ],
+  "predefinedLists": [
+    {
+      "values": [
+        "HealthCare",
+        "Education"
+      ],
+      "name": "Allowed_Sectors",
+      "versions": {
+        "dev": [
+          "dev1",
+          "dev2"
+        ]
+      }
+    },
+    {
+      "values": [
+        "internal@abc.com",
+        "admin@abc.com"
+      ],
+      "name": "BETA_FEATURE_USERS"
+    },
+    {
+      "values": [
+        "dev",
+        "test",
+        "stg",
+        "prd"
+      ],
+      "name": "Environments"
+    },
+    {
+      "values": [
+        "Accessories",
+        "Action Figures",
+        "Arts & Crafts",
+        "Baby & Toddler Toys",
+        "Board Games",
+        "Clothing, Shoes & Jewelry",
+        "Costumes",
+        "Costumes & Accessories",
+        "Craft Kits",
+        "Dolls",
+        "Dolls & Accessories",
+        "Dress Up & Pretend Play",
+        "Games & Accessories",
+        "Hobbies",
+        "Home & Kitchen",
+        "Jigsaw Puzzles",
+        "Kids & Baby",
+        "Learning & Education",
+        "Novelty & Gag Toys",
+        "Party Supplies",
+        "Play Vehicles",
+        "Pretend Play",
+        "Puzzles",
+        "Remote & App Controlled Vehicle Parts",
+        "Remote & App Controlled Vehicles & Parts",
+        "Sports & Outdoor Play",
+        "Sports & Outdoors",
+        "Stuffed Animals & Plush Toys",
+        "Stuffed Animals & Teddy Bears",
+        "Toy Figures & Playsets",
+        "Toys & Games"
+      ],
+      "name": "Product_Types"
+    },
+    {
+      "values": [
+        "userName",
+        "userId",
+        "email",
+        "name"
+      ],
+      "name": "User_Attributes"
+    },
+    {
+      "values": [
+        "anonymous",
+        "free",
+        "client",
+        "internal",
+        "admin"
+      ],
+      "name": "User_Types"
+    }
+  ]
+}
