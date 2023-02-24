@@ -2,6 +2,17 @@
 
 This is a repo that demonstrates the Lambda Genie features. It contains a UI project (simple CRA based app with AWS Amplify Components integrated with AWS Cognito and AWS API Gateway) and an API project (cdk project AWS API Gateway with AWS Lambda REST Api Integration and Cognito Authorizer). The lambda function uses the app genie features to dynamically build a response for the UI to render a personalized dashboard.
 
+In this repo, we will be building an online e-commerce store. There will be 2 rows where we will showcase products. In the first row, we will have 4 slots, where business users can choose the categories of products that they want to showcase. The second slot will have further customizations where we will show targeted products based on age and gender of the logged in user.
+
+The second row will have 2 slots, a carousel of curated products that are on sale, where the business users can choose the products that they want to showcase and the discount that they want to offer. The second slot will have a placeholder for a feature flag protected feature. This feature will be enabled for a select group of users.
+
+The final product will look like this:
+![Final Product](final-product.png)
+
+
+
+
+
 ## Getting Started
 
 ### Prerequisites
