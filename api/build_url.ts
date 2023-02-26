@@ -19,8 +19,7 @@ const signS3URL = async () => {
         if(existsSync("./config.json")){
             console.log("uploading new version");
             await s3.send(new PutObjectCommand({
-                Bucket: "lambda-accelerator-rules",
-                Key: "config.json",
+                ...s3Params,
                 Body: JSON.stringify(require("./config.json")),
             }));
             console.log("uploaded new version");
