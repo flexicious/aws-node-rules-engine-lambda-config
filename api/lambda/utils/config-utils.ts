@@ -2,14 +2,19 @@
 import { GetObjectCommand, HeadObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { ConfigJson } from "@euxdt/node-rules-engine";
 import { Readable } from "stream";
-import { getConfigApi, streamToString,LambdaConfigApi } from "@euxdt/lambda-config";
+import { getLambdaConfigApi, streamToString,LambdaConfigApi } from "@euxdt/lambda-config";
 const s3Client = new S3Client({  });
 const bucketParams = {
     Bucket: "lambda-accelerator-rules",
     Key: "config.json",
 };
+
+///This is where we load the config rules from S3. The config rules are stored in a JSON file in S3.
+//we check to see if the config rules have been updated since the last time we loaded them. If they have, we load the new ones.
+//If they haven't, we use the cached version. Config rules are published from the lambda genie console. 
+
 export const loadConfigApi = async (lambdaName:string):Promise<LambdaConfigApi> => {
-    const configApi = await getConfigApi(
+    const configApi = await getLambdaConfigApi(
         {
             lambdaName,
             loadConfig: async (lastRefreshed?:Date, existingConfig?:ConfigJson) => {

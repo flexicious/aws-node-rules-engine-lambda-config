@@ -48,10 +48,7 @@ export const handler = async (event:APIGatewayEvent) => {
         };
     }
 
-
-
     const environment = "dev";
-
     const configApi = await loadConfigApi("GET_PRODUCTS");
     const slotNames = JSON.parse(await configApi.getConfigValue(CONFIG.LAMBDA_CONFIGS.GET_PRODUCTS.SLOT_NAMES,environment)) as SlotNames;
 
@@ -62,7 +59,7 @@ export const handler = async (event:APIGatewayEvent) => {
     const maxProducts = slotNames.maxProducts ||  4;
 
     const featuredProducts = JSON.parse(await configApi.getConfigValue(CONFIG.LAMBDA_CONFIGS.GET_PRODUCTS.FEATURED_PRODUCTS,environment)) as FeaturedProduct[];
-    const slot2Rules= configApi.configJson.ruleSets.find((ruleSet) => ruleSet.name === CONFIG.RULE_SETS.HOMEPAGE_PERSONALIZATION);
+    const slot2Rules= configApi.configJson.ruleSets.find((ruleSet) => ruleSet.name === CONFIG.RULE_SETS.HOME_PAGE_PERSONALIZATION);
     const userInfo= {
         ...user,
         age: user.birthdate ? Math.floor((new Date().getFullYear() - new Date(user.birthdate).getFullYear())) : 25
@@ -83,7 +80,6 @@ export const handler = async (event:APIGatewayEvent) => {
         console.log("featureFlagRuleResult", featureFlagRuleResult);
     }                
 
-    //find products that match all categories in the slot
     const getProducts = (slot: string[]) => {
         return PRODUCTS.filter((product) => {
             return slot.every((category) => {
