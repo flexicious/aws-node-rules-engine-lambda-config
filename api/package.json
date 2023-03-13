@@ -9,7 +9,8 @@
     "test": "jest",
     "cdk": "cdk",
     "synth": "cdk synth",
-    "watch": "cdk watch"
+    "watch": "cdk watch",
+    "destroy": "cdk destroy"
   },
   "devDependencies": {
     "@aws-sdk/s3-request-presigner": "^3.279.0",
